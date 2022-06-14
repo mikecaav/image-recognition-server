@@ -22,7 +22,7 @@ ap.add_argument("-mH", "--montageH", required=True, type=int,
 args = vars(ap.parse_args())
 
 # initialize the ImageHub object
-imageHub = imagezmq.ImageHub(open_port='tcp://10.71.145.152:5555')
+imageHub = imagezmq.ImageHub()
 # initialize the list of class labels MobileNet SSD was trained to
 # detect, then generate a set of bounding box colors for each class
 CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
