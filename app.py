@@ -1,14 +1,14 @@
 from flask import Flask, render_template, request
 from flask.wrappers import Response
+import imagezmq
 import cv2
-
-cfgfile = "./yolov4/cfg/yolov4-tiny.cfg"
-weightfile = "./yolov4/yolov4-tiny.weights"
-
+import socket
 
 app = Flask(__name__)
 camera = cv2.VideoCapture(0)
 
+rpiName = socket.gethostname()
+receiver = imagezmq.ImageSender(connect_to="tcp://ec2-44-202-146-55.compute-1.amazonaws.com:5555")
 
 @app.route('/')
 def index():

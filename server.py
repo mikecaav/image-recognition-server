@@ -7,6 +7,7 @@ import imagezmq
 import argparse
 import imutils
 import cv2
+
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-p", "--prototxt", required=True,
@@ -23,6 +24,7 @@ args = vars(ap.parse_args())
 
 # initialize the ImageHub object
 imageHub = imagezmq.ImageHub()
+
 # initialize the list of class labels MobileNet SSD was trained to
 # detect, then generate a set of bounding box colors for each class
 CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
@@ -133,5 +135,6 @@ while True:
                 frameDict.pop(rpiName)
         # set the last active check time as current time
         lastActiveCheck = datetime.now()
+    imageHub.send_image(rpiName, frame)
     # if the `q` key was pressed, break from the loop
 
