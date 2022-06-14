@@ -119,12 +119,6 @@ while True:
     frameDict[rpiName] = frame
 	# build a montage using images in the frame dictionary
     montages = build_montages(frameDict.values(), (w, h), (mW, mH))
-	# display the montage(s) on the screen
-    for (i, montage) in enumerate(montages):
-       cv2.imshow("Home pet location monitor ({})".format(i),
-			montage)
-	# detect any kepresses
-    key = cv2.waitKey(1) & 0xFF
 
     	# if current time *minus* last time when the active device check
     # was made is greater than the threshold set then do a check
@@ -140,7 +134,4 @@ while True:
         # set the last active check time as current time
         lastActiveCheck = datetime.now()
     # if the `q` key was pressed, break from the loop
-    if key == ord("q"):
-        break
-# do a bit of cleanup
-cv2.destroyAllWindows()
+
