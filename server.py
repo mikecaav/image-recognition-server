@@ -7,6 +7,7 @@ import imagezmq
 import argparse
 import imutils
 import cv2
+from datetime import datetime
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
@@ -135,6 +136,5 @@ while True:
                 frameDict.pop(rpiName)
         # set the last active check time as current time
         lastActiveCheck = datetime.now()
-    imageHub.send_image(rpiName, frame)
-    # if the `q` key was pressed, break from the loop
+    cv2.imwrite(f'images/{datetime.now()}.jpg', frame)
 
